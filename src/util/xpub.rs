@@ -19,7 +19,6 @@ pub fn xpub_matches_network(xpub: &ExtendedPubKey, network: Network) -> bool {
 /// Used to represent SLIP 32 [xyz]pubs, as well as simple p2*pkh descriptors.
 #[derive(Clone)]
 pub struct XyzPubKey {
-    pub network: Network,
     pub script_type: ScriptType,
     pub extended_pubkey: ExtendedPubKey,
 }
@@ -67,7 +66,6 @@ impl XyzPubKey {
         }
 
         Some(XyzPubKey {
-            network: desc_xpub.xpub.network,
             script_type,
             extended_pubkey: desc_xpub
                 .xpub
@@ -112,7 +110,6 @@ impl FromStr for XyzPubKey {
         let extended_pubkey = faux_xpub.parse()?;
 
         Ok(XyzPubKey {
-            network,
             script_type,
             extended_pubkey,
         })
